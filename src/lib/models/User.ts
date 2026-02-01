@@ -132,7 +132,7 @@ const UserSchema = new Schema<IUser>(
     timestamps: true,
     toJSON: {
       virtuals: true,
-      transform: (_, ret) => {
+      transform: (_: any, ret: any) => {
         delete ret.password;
         delete ret.__v;
         return ret;
