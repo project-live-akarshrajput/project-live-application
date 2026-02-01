@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:server": "tsc --project tsconfig.server.json",
     "start": "next start",
+    "start:server": "node server/index.js",
     "lint": "next lint",
     "server": "ts-node --project tsconfig.server.json server/index.ts",
-    "server:prod": "node --loader ts-node/esm server/index.ts",
+    "server:prod": "node server/index.js",
     "dev:all": "concurrently \"npm run dev\" \"npm run server\""
   },
   "dependencies": {
