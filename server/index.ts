@@ -1,11 +1,15 @@
 import { createServer } from "http";
 import { SignalingServer } from "./signaling";
 
-const PORT = process.env.SOCKET_PORT || 3001;
+// Azure App Service uses PORT, fallback to SOCKET_PORT for local dev
+const PORT = process.env.PORT || process.env.SOCKET_PORT || 3001;
 const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
 
 async function main() {
   console.log("Starting signaling server...");
+  console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
+  console.log(`Port: ${PORT}`);
+  console.log(`Redis URL: ${REDIS_URL ? "configured" : "not configured"}`);
 
   const httpServer = createServer((req, res) => {
     // Health check endpoint

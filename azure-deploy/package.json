@@ -1,0 +1,17 @@
+{
+  "name": "project-live-signaling-server",
+  "version": "1.0.0",
+  "description": "Socket.io signaling server for video chat",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "ioredis": "^5.4.1",
+    "socket.io": "^4.8.1",
+    "uuid": "^9.0.1"
+  }
+}

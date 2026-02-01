@@ -48,15 +48,19 @@ export class SignalingServer {
       transports: ["websocket", "polling"],
     });
 
+    // Parse Redis URL and configure TLS for Upstash (rediss://)
+    const isTls = redisUrl.startsWith("rediss://");
     this.redis = new Redis(redisUrl, {
       maxRetriesPerRequest: 3,
       retryStrategy(times) {
         const delay = Math.min(times * 50, 2000);
         return delay;
       },
+      tls: isTls ? { rejectUnauthorized: false } : undefined,
     });
 
     this.redis.on("connect", () => console.log("Redis connected"));
+    this.redis.on("ready", () => console.log("Redis ready"));
     this.redis.on("error", (err) => console.error("Redis error:", err));
 
     this.setupSocketHandlers();
