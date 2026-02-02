@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Vibly - Random Video Chat",
+  title: "Vibly - Connect with Random People",
   description:
     "Connect with random people around the world through live video chat",
   keywords: ["video chat", "random chat", "live video", "meet people"],
