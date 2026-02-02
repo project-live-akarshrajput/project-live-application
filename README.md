@@ -212,3 +212,4 @@ This project is licensed under the MIT License.
 ## ⚠️ Disclaimer
 
 This application is for educational purposes. Ensure compliance with local laws regarding video chat services. Implement appropriate moderation for production use.
+# Force rebuild
