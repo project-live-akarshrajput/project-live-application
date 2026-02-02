@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { Video, Eye, EyeOff } from "lucide-react";
+import { Video, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { Button, Input } from "@/components/ui";
+import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 
 export default function LoginPage() {
@@ -43,22 +44,44 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-dark-950">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-surface-50">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-100/50 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-100/50 rounded-full blur-3xl" />
+      </div>
+
+      <motion.div
+        className="w-full max-w-md relative z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        {/* Back link */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-surface-500 hover:text-surface-700 text-sm mb-8 transition-colors"
+        >
+          <ArrowLeft size={16} />
+          Back to home
+        </Link>
+
         {/* Logo */}
-        <Link href="/" className="flex items-center justify-center gap-2 mb-8">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
-            <Video size={24} className="text-white" />
+        <Link href="/" className="flex items-center gap-2 mb-8">
+          <div className="w-10 h-10 rounded-xs bg-primary-500 flex items-center justify-center shadow-button">
+            <Video size={22} className="text-white" />
           </div>
-          <span className="text-2xl font-bold text-white">LiveChat</span>
+          <span className="text-2xl font-bold text-surface-900">Vibly</span>
         </Link>
 
         {/* Form Card */}
-        <div className="bg-dark-900 border border-dark-800 rounded-2xl p-8">
-          <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold text-white mb-2">Welcome back</h1>
-            <p className="text-dark-400 text-sm">
-              Sign in to continue to LiveChat
+        <div className="bg-white border border-surface-200 rounded-xs p-8 shadow-card">
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold text-surface-900 mb-1">
+              Welcome back
+            </h1>
+            <p className="text-surface-500 text-sm">
+              Sign in to continue to Vibly
             </p>
           </div>
 
@@ -90,7 +113,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-[34px] text-dark-400 hover:text-dark-200"
+                className="absolute right-3 top-[34px] text-surface-400 hover:text-surface-600 transition-colors"
               >
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
@@ -101,12 +124,12 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-dark-400 text-sm">
+          <div className="mt-6 pt-6 border-t border-surface-100 text-center">
+            <p className="text-surface-500 text-sm">
               Don't have an account?{" "}
               <Link
                 href="/register"
-                className="text-primary-500 hover:text-primary-400"
+                className="text-primary-500 hover:text-primary-600 font-medium"
               >
                 Sign up
               </Link>
@@ -115,17 +138,17 @@ export default function LoginPage() {
         </div>
 
         {/* Safety Notice */}
-        <p className="text-center text-dark-500 text-xs mt-6">
+        <p className="text-center text-surface-400 text-xs mt-6">
           By signing in, you agree to our{" "}
-          <Link href="/terms" className="underline hover:text-dark-400">
+          <Link href="/terms" className="underline hover:text-surface-600">
             Terms of Service
           </Link>{" "}
           and{" "}
-          <Link href="/privacy" className="underline hover:text-dark-400">
+          <Link href="/privacy" className="underline hover:text-surface-600">
             Privacy Policy
           </Link>
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -35,7 +35,7 @@ export default function Avatar({
     return (
       <div
         className={cn(
-          "relative rounded-full overflow-hidden bg-dark-700",
+          "relative rounded-xs overflow-hidden bg-surface-100 border border-surface-200",
           sizes[size],
           className,
         )}
@@ -54,7 +54,7 @@ export default function Avatar({
   return (
     <div
       className={cn(
-        "flex items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-700 text-white font-medium",
+        "flex items-center justify-center rounded-xs bg-gradient-to-br from-primary-400 to-primary-600 text-white font-semibold shadow-soft",
         sizes[size],
         className,
       )}

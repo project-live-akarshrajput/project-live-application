@@ -8,6 +8,7 @@ interface CallState {
   isInQueue: boolean;
   isInCall: boolean;
   queuePosition: number | null;
+  onlineCount: number;
 
   // Call info
   callId: string | null;
@@ -30,6 +31,7 @@ interface CallState {
   setConnected: (connected: boolean) => void;
   setInQueue: (inQueue: boolean) => void;
   setQueuePosition: (position: number | null) => void;
+  setOnlineCount: (count: number) => void;
   setCallInfo: (info: {
     callId: string;
     partnerId: string;
@@ -51,6 +53,7 @@ const initialState = {
   isInQueue: false,
   isInCall: false,
   queuePosition: null,
+  onlineCount: 0,
   callId: null,
   partnerId: null,
   partnerName: null,
@@ -73,6 +76,8 @@ export const useCallStore = create<CallState>((set, get) => ({
     set({ isInQueue: inQueue, isInCall: !inQueue && get().isInCall }),
 
   setQueuePosition: (position) => set({ queuePosition: position }),
+
+  setOnlineCount: (count) => set({ onlineCount: count }),
 
   setCallInfo: (info) =>
     set({

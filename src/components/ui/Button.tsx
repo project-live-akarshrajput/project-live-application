@@ -2,6 +2,7 @@
 
 import React, { forwardRef, ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
+import { motion, HTMLMotionProps } from "framer-motion";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
@@ -23,25 +24,25 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+      "inline-flex items-center justify-center font-medium rounded-xs transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]";
 
     const variants = {
       primary:
-        "bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 active:bg-primary-700",
+        "bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 shadow-button hover:shadow-button-hover",
       secondary:
-        "bg-dark-700 text-white hover:bg-dark-600 focus:ring-dark-500 active:bg-dark-800",
+        "bg-surface-100 text-surface-700 hover:bg-surface-200 focus:ring-surface-400 border border-surface-200",
       outline:
-        "border-2 border-dark-600 text-dark-100 hover:bg-dark-800 focus:ring-dark-500",
+        "border border-surface-300 text-surface-700 hover:bg-surface-100 focus:ring-surface-400 bg-white",
       ghost:
-        "text-dark-300 hover:text-white hover:bg-dark-800 focus:ring-dark-500",
+        "text-surface-600 hover:text-surface-900 hover:bg-surface-100 focus:ring-surface-400",
       danger:
-        "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 active:bg-red-800",
+        "bg-red-500 text-white hover:bg-red-600 focus:ring-red-500 shadow-button hover:shadow-button-hover",
     };
 
     const sizes = {
-      sm: "h-8 px-3 text-sm",
-      md: "h-10 px-4 text-sm",
-      lg: "h-12 px-6 text-base",
+      sm: "h-8 px-3 text-sm gap-1.5",
+      md: "h-10 px-4 text-sm gap-2",
+      lg: "h-12 px-6 text-base gap-2",
       icon: "h-10 w-10",
     };
 

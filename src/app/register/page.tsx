@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Video, Eye, EyeOff, Check } from "lucide-react";
+import { Video, Eye, EyeOff, Check, ArrowLeft } from "lucide-react";
 import { Button, Input, Select } from "@/components/ui";
+import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 
 const GENDER_OPTIONS = [
@@ -134,24 +135,44 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-dark-950">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-surface-50">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary-100/50 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-accent-100/50 rounded-full blur-3xl" />
+      </div>
+
+      <motion.div
+        className="w-full max-w-md relative z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        {/* Back link */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-surface-500 hover:text-surface-700 text-sm mb-8 transition-colors"
+        >
+          <ArrowLeft size={16} />
+          Back to home
+        </Link>
+
         {/* Logo */}
-        <Link href="/" className="flex items-center justify-center gap-2 mb-8">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
-            <Video size={24} className="text-white" />
+        <Link href="/" className="flex items-center gap-2 mb-8">
+          <div className="w-10 h-10 rounded-xs bg-primary-500 flex items-center justify-center shadow-button">
+            <Video size={22} className="text-white" />
           </div>
-          <span className="text-2xl font-bold text-white">LiveChat</span>
+          <span className="text-2xl font-bold text-surface-900">Vibly</span>
         </Link>
 
         {/* Form Card */}
-        <div className="bg-dark-900 border border-dark-800 rounded-2xl p-8">
-          <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold text-white mb-2">
+        <div className="bg-white border border-surface-200 rounded-xs p-8 shadow-card">
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold text-surface-900 mb-1">
               Create account
             </h1>
-            <p className="text-dark-400 text-sm">
-              Join LiveChat and start meeting new people
+            <p className="text-surface-500 text-sm">
+              Join Vibly and start meeting new people
             </p>
           </div>
 
@@ -205,7 +226,7 @@ export default function RegisterPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-[34px] text-dark-400 hover:text-dark-200"
+                className="absolute right-3 top-[34px] text-surface-400 hover:text-surface-600 transition-colors"
               >
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
@@ -256,15 +277,15 @@ export default function RegisterPage() {
               <button
                 type="button"
                 onClick={() => setAgreedToTerms(!agreedToTerms)}
-                className={`mt-0.5 w-5 h-5 rounded border flex items-center justify-center transition-colors ${
+                className={`mt-0.5 w-5 h-5 rounded-xs border flex items-center justify-center transition-colors ${
                   agreedToTerms
                     ? "bg-primary-500 border-primary-500"
-                    : "border-dark-600 bg-dark-800"
+                    : "border-surface-300 bg-white"
                 }`}
               >
                 {agreedToTerms && <Check size={14} className="text-white" />}
               </button>
-              <label className="text-sm text-dark-300">
+              <label className="text-sm text-surface-600">
                 I am at least 18 years old and agree to the{" "}
                 <Link
                   href="/terms"
@@ -282,7 +303,7 @@ export default function RegisterPage() {
               </label>
             </div>
             {errors.terms && (
-              <p className="text-sm text-red-400">{errors.terms}</p>
+              <p className="text-sm text-red-500">{errors.terms}</p>
             )}
 
             <Button type="submit" className="w-full" isLoading={isLoading}>
@@ -290,19 +311,19 @@ export default function RegisterPage() {
             </Button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-dark-400 text-sm">
+          <div className="mt-6 pt-6 border-t border-surface-100 text-center">
+            <p className="text-surface-500 text-sm">
               Already have an account?{" "}
               <Link
                 href="/login"
-                className="text-primary-500 hover:text-primary-400"
+                className="text-primary-500 hover:text-primary-600 font-medium"
               >
                 Sign in
               </Link>
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

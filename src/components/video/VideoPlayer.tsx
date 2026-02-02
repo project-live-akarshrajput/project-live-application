@@ -31,7 +31,7 @@ export default function VideoPlayer({
   return (
     <div
       className={cn(
-        "relative w-full h-full bg-dark-900 rounded-xl overflow-hidden",
+        "relative w-full h-full bg-surface-200 rounded-xs overflow-hidden",
         className,
       )}
     >
@@ -49,9 +49,9 @@ export default function VideoPlayer({
       ) : showPlaceholder ? (
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
-            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-dark-700 flex items-center justify-center">
+            <div className="w-20 h-20 mx-auto mb-4 rounded-xs bg-surface-300 flex items-center justify-center">
               <svg
-                className="w-10 h-10 text-dark-400"
+                className="w-10 h-10 text-surface-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -64,13 +64,13 @@ export default function VideoPlayer({
                 />
               </svg>
             </div>
-            <p className="text-dark-400 text-sm">Waiting for video...</p>
+            <p className="text-surface-500 text-sm">Waiting for video...</p>
           </div>
         </div>
       ) : null}
 
       {label && (
-        <div className="absolute bottom-3 left-3 px-2 py-1 bg-dark-900/80 backdrop-blur-sm rounded-md">
+        <div className="absolute bottom-3 left-3 px-2.5 py-1 bg-surface-900/80 backdrop-blur-sm rounded-xs">
           <span className="text-white text-sm font-medium">{label}</span>
         </div>
       )}

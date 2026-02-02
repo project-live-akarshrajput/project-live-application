@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Camera, Save, User, Mail, Calendar, Globe } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Button, Input, Select, Avatar, Spinner } from "@/components/ui";
+import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 
 const PREFERENCE_OPTIONS = [
@@ -144,7 +145,7 @@ export default function ProfilePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-dark-950 flex items-center justify-center">
+      <div className="min-h-screen bg-surface-50 flex items-center justify-center">
         <Spinner size="lg" />
       </div>
     );
@@ -155,18 +156,27 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-dark-950">
+    <div className="min-h-screen flex flex-col bg-surface-50">
       <Header />
 
       <main className="flex-1 py-8">
         <div className="max-w-2xl mx-auto px-4">
-          <h1 className="text-2xl font-bold text-white mb-8">
+          <motion.h1
+            className="text-2xl font-bold text-surface-900 mb-8"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
             Profile Settings
-          </h1>
+          </motion.h1>
 
           {/* Profile Image */}
-          <div className="bg-dark-900 border border-dark-800 rounded-xl p-6 mb-6">
-            <h2 className="text-lg font-semibold text-white mb-4">
+          <motion.div
+            className="bg-white border border-surface-200 rounded-xs p-6 mb-4 shadow-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            <h2 className="text-base font-semibold text-surface-900 mb-4">
               Profile Picture
             </h2>
             <div className="flex items-center gap-6">
@@ -177,7 +187,7 @@ export default function ProfilePage() {
                   size="xl"
                 />
                 {isUploading && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-dark-900/80 rounded-full">
+                  <div className="absolute inset-0 flex items-center justify-center bg-white/80 rounded-xs">
                     <Spinner size="sm" />
                   </div>
                 )}
@@ -198,58 +208,76 @@ export default function ProfilePage() {
                   <Camera size={16} className="mr-2" />
                   Change Photo
                 </Button>
-                <p className="text-sm text-dark-400 mt-2">
+                <p className="text-sm text-surface-400 mt-2">
                   JPG, PNG, or WebP. Max 5MB.
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Profile Info */}
-          <div className="bg-dark-900 border border-dark-800 rounded-xl p-6 mb-6">
-            <h2 className="text-lg font-semibold text-white mb-4">
+          <motion.div
+            className="bg-white border border-surface-200 rounded-xs p-6 mb-4 shadow-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <h2 className="text-base font-semibold text-surface-900 mb-4">
               Profile Information
             </h2>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 py-2 border-b border-dark-800">
-                <Mail size={18} className="text-dark-400" />
+            <div className="space-y-1">
+              <div className="flex items-center gap-3 py-3 border-b border-surface-100">
+                <div className="w-9 h-9 rounded-xs bg-surface-100 flex items-center justify-center">
+                  <Mail size={16} className="text-surface-500" />
+                </div>
                 <div>
-                  <p className="text-sm text-dark-400">Email</p>
-                  <p className="text-white">{profile.email}</p>
+                  <p className="text-xs text-surface-400">Email</p>
+                  <p className="text-surface-900">{profile.email}</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 py-2 border-b border-dark-800">
-                <User size={18} className="text-dark-400" />
+              <div className="flex items-center gap-3 py-3 border-b border-surface-100">
+                <div className="w-9 h-9 rounded-xs bg-surface-100 flex items-center justify-center">
+                  <User size={16} className="text-surface-500" />
+                </div>
                 <div>
-                  <p className="text-sm text-dark-400">Username</p>
-                  <p className="text-white">@{profile.username}</p>
+                  <p className="text-xs text-surface-400">Username</p>
+                  <p className="text-surface-900">@{profile.username}</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 py-2 border-b border-dark-800">
-                <Calendar size={18} className="text-dark-400" />
+              <div className="flex items-center gap-3 py-3 border-b border-surface-100">
+                <div className="w-9 h-9 rounded-xs bg-surface-100 flex items-center justify-center">
+                  <Calendar size={16} className="text-surface-500" />
+                </div>
                 <div>
-                  <p className="text-sm text-dark-400">Member since</p>
-                  <p className="text-white">
+                  <p className="text-xs text-surface-400">Member since</p>
+                  <p className="text-surface-900">
                     {new Date(profile.createdAt).toLocaleDateString()}
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 py-2">
-                <Globe size={18} className="text-dark-400" />
+              <div className="flex items-center gap-3 py-3">
+                <div className="w-9 h-9 rounded-xs bg-surface-100 flex items-center justify-center">
+                  <Globe size={16} className="text-surface-500" />
+                </div>
                 <div>
-                  <p className="text-sm text-dark-400">Total calls</p>
-                  <p className="text-white">{profile.totalCalls}</p>
+                  <p className="text-xs text-surface-400">Total calls</p>
+                  <p className="text-surface-900">{profile.totalCalls}</p>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Edit Profile */}
-          <div className="bg-dark-900 border border-dark-800 rounded-xl p-6">
-            <h2 className="text-lg font-semibold text-white mb-4">
+          <motion.div
+            className="bg-white border border-surface-200 rounded-xs p-6 shadow-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <h2 className="text-base font-semibold text-surface-900 mb-4">
               Edit Profile
             </h2>
             <div className="space-y-4">
@@ -263,7 +291,7 @@ export default function ProfilePage() {
               />
 
               <div>
-                <label className="block text-sm font-medium text-dark-200 mb-1.5">
+                <label className="block text-sm font-medium text-surface-700 mb-1.5">
                   Bio
                 </label>
                 <textarea
@@ -273,10 +301,10 @@ export default function ProfilePage() {
                   }
                   rows={3}
                   maxLength={500}
-                  className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-dark-600 text-white placeholder-dark-400 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
+                  className="w-full px-3 py-2.5 rounded-xs bg-white border border-surface-200 text-surface-900 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 resize-none transition-all"
                   placeholder="Tell others about yourself..."
                 />
-                <p className="text-xs text-dark-500 mt-1">
+                <p className="text-xs text-surface-400 mt-1">
                   {formData.bio.length}/500
                 </p>
               </div>
@@ -306,7 +334,7 @@ export default function ProfilePage() {
                 </Button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </main>
 

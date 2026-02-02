@@ -38,6 +38,7 @@ export function useWebRTC() {
     setConnected,
     setInQueue,
     setQueuePosition,
+    setOnlineCount,
     setCallInfo,
     clearCallInfo,
     setLocalStream,
@@ -310,6 +311,10 @@ export function useWebRTC() {
       console.log("Socket authenticated");
     });
 
+    socket.on("online-count", (data: { count: number }) => {
+      setOnlineCount(data.count);
+    });
+
     socket.on("disconnect", () => {
       console.log("Socket disconnected");
       setConnected(false);
@@ -358,6 +363,7 @@ export function useWebRTC() {
   }, [
     session,
     setConnected,
+    setOnlineCount,
     setQueuePosition,
     setCallInfo,
     handleSignal,

@@ -37,10 +37,10 @@ export default function VideoControls({
         onClick={toggleAudio}
         disabled={disabled}
         className={cn(
-          "p-3 rounded-full transition-all duration-200",
+          "p-3 rounded-xs transition-all duration-200",
           isAudioEnabled
-            ? "bg-dark-700 hover:bg-dark-600 text-white"
-            : "bg-red-600 hover:bg-red-700 text-white",
+            ? "bg-surface-100 hover:bg-surface-200 text-surface-700"
+            : "bg-red-500 hover:bg-red-600 text-white",
           disabled && "opacity-50 cursor-not-allowed",
         )}
         title={isAudioEnabled ? "Mute microphone" : "Unmute microphone"}
@@ -53,10 +53,10 @@ export default function VideoControls({
         onClick={toggleVideo}
         disabled={disabled}
         className={cn(
-          "p-3 rounded-full transition-all duration-200",
+          "p-3 rounded-xs transition-all duration-200",
           isVideoEnabled
-            ? "bg-dark-700 hover:bg-dark-600 text-white"
-            : "bg-red-600 hover:bg-red-700 text-white",
+            ? "bg-surface-100 hover:bg-surface-200 text-surface-700"
+            : "bg-red-500 hover:bg-red-600 text-white",
           disabled && "opacity-50 cursor-not-allowed",
         )}
         title={isVideoEnabled ? "Turn off camera" : "Turn on camera"}
@@ -69,7 +69,7 @@ export default function VideoControls({
         onClick={onEndCall}
         disabled={disabled || !isInCall}
         className={cn(
-          "p-4 rounded-full bg-red-600 hover:bg-red-700 text-white transition-all duration-200",
+          "p-4 rounded-xs bg-red-500 hover:bg-red-600 text-white transition-all duration-200 shadow-button",
           (disabled || !isInCall) && "opacity-50 cursor-not-allowed",
         )}
         title="End call"
@@ -82,7 +82,7 @@ export default function VideoControls({
         onClick={onSkip}
         disabled={disabled || !isInCall}
         className={cn(
-          "p-3 rounded-full bg-dark-700 hover:bg-dark-600 text-white transition-all duration-200",
+          "p-3 rounded-xs bg-surface-100 hover:bg-surface-200 text-surface-700 transition-all duration-200",
           (disabled || !isInCall) && "opacity-50 cursor-not-allowed",
         )}
         title="Skip to next person"
@@ -95,7 +95,7 @@ export default function VideoControls({
         onClick={onReport}
         disabled={disabled || !isInCall}
         className={cn(
-          "p-3 rounded-full bg-dark-700 hover:bg-orange-600 text-white transition-all duration-200",
+          "p-3 rounded-xs bg-surface-100 hover:bg-orange-500 text-surface-700 hover:text-white transition-all duration-200",
           (disabled || !isInCall) && "opacity-50 cursor-not-allowed",
         )}
         title="Report user"

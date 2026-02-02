@@ -67,13 +67,15 @@ export default function ReportModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="w-full max-w-md mx-4 bg-dark-900 rounded-xl shadow-2xl">
-        <div className="flex items-center justify-between p-4 border-b border-dark-800">
-          <h2 className="text-lg font-semibold text-white">Report User</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-surface-900/50 backdrop-blur-sm">
+      <div className="w-full max-w-md mx-4 bg-white rounded-xs shadow-elevated">
+        <div className="flex items-center justify-between p-4 border-b border-surface-100">
+          <h2 className="text-lg font-semibold text-surface-900">
+            Report User
+          </h2>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg hover:bg-dark-800 text-dark-400 hover:text-white transition-colors"
+            className="p-1 rounded-xs hover:bg-surface-100 text-surface-400 hover:text-surface-600 transition-colors"
           >
             <X size={20} />
           </button>
@@ -91,7 +93,7 @@ export default function ReportModal({
           />
 
           <div>
-            <label className="block text-sm font-medium text-dark-200 mb-1.5">
+            <label className="block text-sm font-medium text-surface-700 mb-1.5">
               Additional details (optional)
             </label>
             <textarea
@@ -99,7 +101,7 @@ export default function ReportModal({
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
               maxLength={1000}
-              className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-dark-600 text-white placeholder-dark-400 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
+              className="w-full px-3 py-2.5 rounded-xs bg-white border border-surface-200 text-surface-900 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 resize-none transition-all"
               placeholder="Provide any additional information..."
             />
           </div>
@@ -107,7 +109,7 @@ export default function ReportModal({
           <div className="flex gap-3 pt-2">
             <Button
               type="button"
-              variant="ghost"
+              variant="secondary"
               className="flex-1"
               onClick={onClose}
             >

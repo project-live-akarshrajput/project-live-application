@@ -17,16 +17,16 @@ export default function GenderFilter({ value, onChange }: GenderFilterProps) {
 
   return (
     <div className="flex items-center justify-center gap-2">
-      <span className="text-sm text-dark-400 mr-2">Match with:</span>
+      <span className="text-sm text-surface-500 mr-2">Match with:</span>
       {options.map((option) => (
         <button
           key={option.value}
           onClick={() => onChange(option.value)}
           className={cn(
-            "px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200",
+            "px-3 py-1.5 rounded-xs text-sm font-medium transition-all duration-200",
             value === option.value
-              ? "bg-primary-500 text-white"
-              : "bg-dark-700 text-dark-300 hover:bg-dark-600",
+              ? "bg-primary-500 text-white shadow-button"
+              : "bg-surface-100 text-surface-600 hover:bg-surface-200",
           )}
         >
           {option.label}

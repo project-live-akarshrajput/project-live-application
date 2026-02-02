@@ -35,6 +35,7 @@ const QUEUE_KEYS = {
 export class SignalingServer {
   private io: SocketServer;
   private redis: Redis;
+  private onlineCountInterval: NodeJS.Timeout | null = null;
 
   constructor(httpServer: HttpServer, redisUrl: string) {
     this.io = new SocketServer(httpServer, {
@@ -64,11 +65,30 @@ export class SignalingServer {
     this.redis.on("error", (err) => console.error("Redis error:", err));
 
     this.setupSocketHandlers();
+    this.startOnlineCountBroadcast();
+  }
+
+  // Broadcast online count every 5 seconds to reduce load
+  private startOnlineCountBroadcast() {
+    this.onlineCountInterval = setInterval(() => {
+      const count = this.io.engine.clientsCount;
+      this.io.emit("online-count", { count });
+    }, 5000);
+
+    // Also emit on connection changes with slight debounce
+    this.io.on("connection", () => {
+      setTimeout(() => {
+        this.io.emit("online-count", { count: this.io.engine.clientsCount });
+      }, 100);
+    });
   }
 
   private setupSocketHandlers() {
     this.io.on("connection", (socket: Socket) => {
       console.log(`User connected: ${socket.id}`);
+
+      // Send current online count immediately to new connection
+      socket.emit("online-count", { count: this.io.engine.clientsCount });
 
       // Authenticate user
       socket.on(

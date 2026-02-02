@@ -12,7 +12,7 @@ export default async function ChatPage() {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-dark-950">
+    <div className="h-screen flex flex-col bg-surface-100">
       <Header />
       <main className="flex-1 overflow-hidden">
         <VideoRoom />
